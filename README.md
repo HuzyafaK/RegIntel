@@ -5,6 +5,10 @@ extraction, a symbolic rule engine with 3-valued logic, Inductive Logic
 Programming (ILP) for compound rule discovery, and an HMAC-signed
 tamper-evident audit trail.
 
+## Demo
+
+[![RegIntel demo](https://img.youtube.com/vi/JA2PcbBO2ek/maxresdefault.jpg)](https://youtu.be/JA2PcbBO2ek)
+
 ## Repository structure
 
 ```
