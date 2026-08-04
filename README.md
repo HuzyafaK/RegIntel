@@ -7,7 +7,7 @@ tamper-evident audit trail.
 
 ## Demo
 
-[![RegIntel demo](https://img.youtube.com/vi/JA2PcbBO2ek/maxresdefault.jpg)](https://youtu.be/JA2PcbBO2ek)
+[![RegIntel demo](https://img.youtube.com/vi/JA2PcbBO2ek/hqdefault.jpg)](https://www.youtube.com/watch?v=JA2PcbBO2ek)
 
 ## Repository structure
 
