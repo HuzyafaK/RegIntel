@@ -1,0 +1,18 @@
+# Core engine has no hard dependencies beyond the standard library
+# in GT-ILP / mock_llm mode. Install extras below for a live LLM backend
+# or to run the Kaggle notebooks.
+
+# Groq backend
+groq>=0.11.0
+
+# Ollama backend (data-sovereign, local inference) — uses `requests` only,
+# no extra package required beyond a running Ollama server.
+
+# JAX / Keras backend
+jax>=0.4.30
+keras>=3.0
+keras-hub>=0.16.0
+
+# PyTorch / HuggingFace backend
+torch>=2.2
+transformers>=4.44

@@ -1,32 +1,41 @@
-# RegIntel Engine — Finalized Source
+# RegIntel
 
-Neuro-symbolic compliance intelligence engine. This package contains all
-finalized, working source files as of the current iteration.
+Neuro-symbolic compliance intelligence engine. Combines LLM-based fact
+extraction, a symbolic rule engine with 3-valued logic, Inductive Logic
+Programming (ILP) for compound rule discovery, and an HMAC-signed
+tamper-evident audit trail.
 
-## Structure
+## Repository structure
 
 ```
-regintel_engine/
-├── __init__.py
-├── models.py              — Core data models (FactDict, ExtractedFact, Verdict, etc.)
-├── pipeline.py             — RegIntelPipeline — main entry point, backend orchestration
-├── vocabulary.py           — 45-predicate controlled vocabulary across 4 domains
-├── rules/
-│   └── engine.py           — SymbolicRuleEngine + RuleCompiler — 24 base rules, 3-valued logic
-├── ilp/
-│   └── sparse_ilp.py       — Inductive Logic Programming — compound rule discovery
-├── audit/
-│   └── chain.py            — HMACauditChain — HMAC-SHA256 tamper-evident audit trail
-└── extraction/
-    ├── llm_extractor.py    — LLM parser: Groq, Ollama, JAX, PyTorch backends
-    └── verifier.py         — Hallucination verifier — rejects non-verbatim extractions
-
-kaggle_notebook_per_cell.py       — Primary Kaggle setup notebook (cells 1-22)
-kaggle_notebook_complete.py       — Complete single-file notebook variant
-kaggle_evaluation_notebook.py     — Evaluation harness
-kaggle_prototype_notebook.py      — GT-ILP prototype proof notebook
-kaggle_preprocessing_notebook.py  — Groq batch extraction preprocessing
-build_ilp_data_from_gt.py         — Builds ILP training facts from ground truth labels
+RegIntel/
+├── regintel_engine/            Core Python package
+│   ├── models.py                  Data models — FactDict, ExtractedFact, Verdict
+│   ├── pipeline.py                RegIntelPipeline — main entry point, backend orchestration
+│   ├── vocabulary.py              45-predicate controlled vocabulary across 4 domains
+│   ├── rules/
+│   │   └── engine.py              SymbolicRuleEngine + RuleCompiler — 24 base rules, 3-valued logic
+│   ├── ilp/
+│   │   └── sparse_ilp.py          Inductive Logic Programming — compound rule discovery
+│   ├── audit/
+│   │   └── chain.py               HMACAuditChain — HMAC-SHA256 tamper-evident audit trail
+│   └── extraction/
+│       ├── llm_extractor.py       LLM parser — Groq, Ollama, JAX, PyTorch backends
+│       └── verifier.py            Hallucination verifier — rejects non-verbatim extractions
+│
+├── notebooks/                  Kaggle notebook scripts (see notebooks/README.md for run order)
+│   ├── kaggle_prototype_notebook.py
+│   ├── kaggle_preprocessing_notebook.py
+│   ├── kaggle_notebook_per_cell.py
+│   ├── kaggle_notebook_complete.py
+│   └── kaggle_evaluation_notebook.py
+│
+├── scripts/                    Standalone data/training utilities
+│   └── build_ilp_data_from_gt.py  Builds ILP training facts from ground-truth labels
+│
+├── requirements.txt
+├── pyproject.toml
+└── LICENSE
 ```
 
 ## Quick Start
@@ -61,6 +70,16 @@ pipeline = RegIntelPipeline.create(
 )
 ```
 
+## Installation
+
+```bash
+pip install -r requirements.txt
+```
+
+The core engine has no third-party dependencies in `mock_llm=True` (GT-ILP)
+mode. Install the extras in `requirements.txt` only for the backend you
+intend to use (Groq, JAX/Keras, or PyTorch/HuggingFace).
+
 ## Verified State
 
 - 24 base rules across 4 domains (GMP, FDA Device, Clinical Trials, SEC Financial)
@@ -69,4 +88,6 @@ pipeline = RegIntelPipeline.create(
 - ILP discovers 1 compound rule (conf=1.00, support=111) on the 1,265-doc training set
 - Evaluated: 100% decision accuracy, 100% safety recall, 0 false negatives on 150-doc test set
 
-Generated from finalized source as of current session.
+## License
+
+See [LICENSE](LICENSE).
