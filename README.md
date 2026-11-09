@@ -1,6 +1,6 @@
 # RegIntel
 
-**A neuro-symbolic compliance intelligence engine.** RegIntel reads
+**An evolving neuro-symbolic compliance intelligence engine.** RegIntel reads
 regulatory documents (GMP batch records, FDA device submissions, clinical
 trial protocols, SEC financial filings), extracts discrete facts with an
 LLM, and hands those facts to a symbolic rule engine that produces an
